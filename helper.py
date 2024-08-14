@@ -8,10 +8,13 @@ from skimage.transform import resize
 import matplotlib.pyplot as plt
 from snntorch import spikegen
 from torch.utils.data import DataLoader
-import numpy as np
 from skimage import data as skimage_data
 from skimage.color import rgb2gray
 import os
+import snntorch.spikeplot as splt
+from IPython.display import HTML
+
+
 
 def preprocessing(img, w=16, h=16):
     """
@@ -195,3 +198,10 @@ def load_image(w=16, h=16):
     data = iter(train_loader) # Create an iterator from DataLoader
 
     return data, train_loader, data_img
+
+def plot_spiking_image(spike_data):
+    fig, ax = plt.subplots()
+    anim = splt.animator(spike_data, fig, ax)
+
+    HTML(anim.to_html5_video())
+    anim.save('animation.mp4')

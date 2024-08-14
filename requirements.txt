@@ -6,3 +6,4 @@ numpy
 tqdm
 scikit-image
 tensorflow
+ffmpeg-python
