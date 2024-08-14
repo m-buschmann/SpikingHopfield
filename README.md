@@ -27,7 +27,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-1. in **helper.py**, load_image: choose the images you want to test and train on
+1. in **helper.py**, load_image: choose the images you want to train and test on
 2. run **gridsearch.py** to perform a grid search for the best hyperparameters given your images
 3. set hyperparameters in **main.py**
 4. run **main.py** to train your network on the images with the hyperparameters, and test how well the network performed with cosine similarity
