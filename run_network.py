@@ -2,6 +2,7 @@ from model import FullyConnectedLeakyNetwork
 from helper import test_image, load_image
 from snntorch import spikegen
 from skimage.transform import resize
+import os
 
 
 # Define hyperparameters
@@ -18,7 +19,7 @@ learning_rate = 0.035
 look_back = 5
 plus = 0.1
 minus = -0.07
-threshold = 0.4
+threshold = 0.5
 
 # Load the data
 data, train_loader, data_img = load_image(w,h)
@@ -48,11 +49,16 @@ outputs = []
 image_overlap_list = []
 
 noise_levels = [0.0, 0.2, 0.5]
+hyperparameter_title = f'lr_{learning_rate}_epoch_{epochs}_lookback_{look_back}_gain_{gain}'
+
+# Create a directory for the hyperparameters
+output_dir = f'output_images/{hyperparameter_title}'
+os.makedirs(output_dir, exist_ok=True)
 
 for index, img in enumerate(data_img):
   img = resize(img, (w, h), mode='reflect')
   for noise_level in noise_levels:
-    spike_test_data, spike_test_data_noisy, output_spikes, spike_frequency, image_overlap = test_image(model, img, index, num_steps, noise_level)
+    spike_test_data, spike_test_data_noisy, output_spikes, spike_frequency, image_overlap = test_image(model, img, index, num_steps, output_dir, noise_level, w, gain, iterations)
     outputs.append((spike_test_data, spike_test_data_noisy, output_spikes))
     image_overlap_list.append(image_overlap)
 

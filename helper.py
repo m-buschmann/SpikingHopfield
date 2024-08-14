@@ -35,11 +35,7 @@ def add_noise(img, noise_level=0.2):
     return noisy_img
 
 
-def test_image(model, image, image_index, num_steps, noise_level=0.2, w=16, gain=0.2, iterations=100):
-    # Ensure the output directory exists
-    output_dir = 'output_images'
-    os.makedirs(output_dir, exist_ok=True)
-
+def test_image(model, image, image_index, num_steps, output_dir, noise_level=0.2, w=16, gain=0.2, iterations=100):
     # Preprocess the original image
     h = w
     tensor = preprocessing(image, w, h)

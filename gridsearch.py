@@ -22,7 +22,7 @@ learning_rates = [0.03, 0.0325, 0.35, 0.37]  # Example values for learning rates
 gains = [0.315, 0.32, 0.325, 0.33, 0.335]             # Example values for gains
 look_backs = [4,5,6]              # Example values for look back
 epochs = [10]
-threshold = [0.35, 0.4, 0.45, 0.5]
+threshold = [0.45, 0.48, 0.5, 0.52]
 
 # Create a grid of all possible combinations
 hyperparameter_combinations = list(itertools.product(learning_rates, gains, look_backs, epochs, threshold))
