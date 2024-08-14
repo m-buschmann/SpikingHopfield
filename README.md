@@ -1,7 +1,7 @@
 # Spiking Hopfield Network for Image Processing
 
 ## Overview
-This project implements a Spiking Hopfield Network to process and analyze images. The model utilizes spike data generated from images, applies noise, and evaluates performance based on the cosine similarity of spike frequency and the original image. The Hopfield network serves as a form of associative memory that can recall patterns based on the input it receives.
+This project implements a Spiking Hopfield Network to process and analyze images. The model utilizes rate encoded spike data generated from images, applies noise, and evaluates performance based on the cosine similarity of spike frequency and the original image. The Hopfield network serves as a form of associative memory that can recall patterns based on the input it receives.
 
 ## Features
 - **Spiking Hopfield Network**: Implements an associative memory model using spiking neurons.
@@ -34,3 +34,13 @@ pip install -r requirements.txt
 
 If you just want to see how the network performs with the set images and hyperparameters, only run **main.py**.
 
+## Example
+To run the model, use the following command in the terminal:
+```bash
+python main.py
+```
+Acknowledgments
+
+    The Hopfield Network concepts are adapted from @takyamamoto (https://github.com/takyamamoto/Hopfield-Network/blob/master/train_mnist.py)
+    The spiking image generation is adapted from Jason K. Eshraghian (https://colab.research.google.com/github/jeshraghian/snntorch/blob/master/examples/tutorial_1_spikegen.ipynb)
+    The project was planned and executed by Malin Braatz, Mathilda Buschmann and Marieke Schmiesing.
