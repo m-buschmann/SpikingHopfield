@@ -4,6 +4,7 @@ from snntorch import spikegen
 from skimage.transform import resize
 
 
+# Define hyperparameters
 num_steps =100
 batch_size = 1
 w = 16
@@ -48,10 +49,10 @@ image_overlap_list = []
 
 noise_levels = [0.0, 0.2, 0.5]
 
-for img in data_img:
+for index, img in enumerate(data_img):
   img = resize(img, (w, h), mode='reflect')
   for noise_level in noise_levels:
-    spike_test_data, spike_test_data_noisy, output_spikes, spike_frequency, image_overlap = test_image(model, img, num_steps, noise_level)
+    spike_test_data, spike_test_data_noisy, output_spikes, spike_frequency, image_overlap = test_image(model, img, index, num_steps, noise_level)
     outputs.append((spike_test_data, spike_test_data_noisy, output_spikes))
     image_overlap_list.append(image_overlap)
 
