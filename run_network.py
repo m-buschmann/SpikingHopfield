@@ -36,11 +36,7 @@ model = FullyConnectedLeakyNetwork(n_neurons, learning_rate, look_back, epochs, 
 # Initialize membrane potentials
 mem = model.leaky.init_leaky()
 
-# Forward pass through the network
-spike_data_flat = []
-
-for i in range (len(spike_data)):
-  spike_data_flat.append(spike_data[i].view(num_steps, -1))
+spike_data_flat = [spike.view(num_steps, -1) for spike in spike_data]
 
 # Train weights using the provided training method
 model.train_weights(spike_data_flat, mem, num_steps, learning_rate, look_back, epochs)
