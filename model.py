@@ -2,6 +2,7 @@
 
 # TODO: write comments + docstrings
 # TODO: add nice movie plot of noisy images
+# TODO: README
 
 import snntorch as snn
 import torch
