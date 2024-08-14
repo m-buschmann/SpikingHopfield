@@ -39,8 +39,9 @@ To run the model, use the following command in the terminal:
 ```bash
 python main.py
 ```
-Acknowledgments
 
-    The Hopfield Network concepts are adapted from @takyamamoto (https://github.com/takyamamoto/Hopfield-Network/blob/master/train_mnist.py)
-    The spiking image generation is adapted from Jason K. Eshraghian (https://colab.research.google.com/github/jeshraghian/snntorch/blob/master/examples/tutorial_1_spikegen.ipynb)
-    The project was planned and executed by Malin Braatz, Mathilda Buschmann and Marieke Schmiesing.
+## Acknowledgments
+
+The Hopfield Network concepts are adapted from @takyamamoto (https://github.com/takyamamoto/Hopfield-Network/blob/master/train_mnist.py)
+The spiking image generation is adapted from Jason K. Eshraghian (https://colab.research.google.com/github/jeshraghian/snntorch/blob/master/examples/tutorial_1_spikegen.ipynb)
+The project was planned and executed by Malin Braatz, Mathilda Buschmann and Marieke Schmiesing.
