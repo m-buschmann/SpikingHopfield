@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# TODO: add nice movie plot of noisy images
 # TODO: run gridsearch again
 
 import snntorch as snn

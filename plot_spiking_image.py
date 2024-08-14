@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from helper import load_image, plot_spiking_image
 from snntorch import spikegen
 
-plt.rcParams['animation.ffmpeg_path'] = '/home/mathilda/anaconda3/envs/mne/bin/ffmpeg'
+# plt.rcParams['animation.ffmpeg_path'] = '/home/mathilda/anaconda3/envs/mne/bin/ffmpeg'
 
 # Define hyperparameters for the simulation
 num_steps = 100  # Total time steps for spike generation
@@ -22,7 +22,7 @@ for i in range (len(train_loader)):
   # Generate spike data using the spiking rate function
   spike_data.append(spikegen.rate(data_it, num_steps=num_steps, gain=gain))
 
-# Select the first sample from the spike data
+# Select a first sample from the spike data
 spike_data_sample = spike_data[0] 
 # Remove the batch dimension 
 spike_data_sample = spike_data_sample[:, 0]  

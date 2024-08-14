@@ -23,16 +23,24 @@ pip install -r requirements.txt
 - **helper.py**: Includes helper functions for loading images, preprocessing data, adding noise, and testing images through the SNN.
 - **main.py**: The main script where the Spiking Hopfield Network is trained and evaluated using sample images.
 - **output_images/**: Directory where output images from the testing phase will be saved.
-- **gridsearch.py**: Perform grid search for the best hyperparameter. 
+- **gridsearch.py**: Perform grid search for the best hyperparameter.
+- **plot_spiking_image.py**: Plot and save the generated rate encoded spiking image as mp4.
 
 ## Usage
 
-1. in **helper.py**, load_image: choose the images you want to train and test on
-2. run **gridsearch.py** to perform a grid search for the best hyperparameters given your images
-3. set hyperparameters in **main.py**
-4. run **main.py** to train your network on the images with the hyperparameters, and test how well the network performed with cosine similarity
+1. In **helper.py**, load_image: choose the images you want to train and test on.
+2. Run **gridsearch.py** to perform a grid search for the best hyperparameters given your images.
+3. Set hyperparameters in **main.py**.
+4. Run **main.py** to train your network on the images with the hyperparameters, and test how well the network performed with cosine similarity.
 
 If you just want to see how the network performs with the set images and hyperparameters, only run **main.py**.
+
+To visualize the spiking images:
+1. If necessary, set the path to your local ffmpeg installation in **plot_spiking_image.py**:
+```bash
+plt.rcParams['animation.ffmpeg_path'] = 
+```
+2. Run **plot_spiking_image.py**
 
 ## Example
 To run the model, use the following command in the terminal:

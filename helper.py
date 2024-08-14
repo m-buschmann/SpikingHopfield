@@ -200,6 +200,12 @@ def load_image(w=16, h=16):
     return data, train_loader, data_img
 
 def plot_spiking_image(spike_data):
+    """
+    Plot a spiking image using the provided spike data.
+    
+    Args:
+        spike_data (torch.Tensor): The spike data to plot.
+    """
     fig, ax = plt.subplots()
     anim = splt.animator(spike_data, fig, ax)
 
