@@ -2,9 +2,10 @@ import itertools
 import os
 import pandas as pd
 from model import FullyConnectedLeakyNetwork
-from helper import preprocessing, test_image, calculate_cosine_similarity, load_image
+from helper import test_image, load_image
 from snntorch import spikegen
 from skimage.transform import resize
+import gc
 
 num_steps = 100
 batch_size = 1
@@ -20,7 +21,7 @@ minus = -0.07
 data, train_loader, data_img = load_image(w, h)
 
 # Define hyperparameters to search over
-learning_rates = [0.03, 0.0325, 0.35, 0.37]  # Example values for learning rates
+learning_rates = [0.035, 0.037]  # Example values for learning rates
 gains = [0.315, 0.32, 0.325, 0.33, 0.335]  # Example values for gains
 look_backs = [4, 5, 6]  # Example values for look back
 epochs = [10]
@@ -99,8 +100,8 @@ for lr, g, lb, epo, th in hyperparameter_combinations:
         best_overlap = avg_overlap
         best_params = (lr, g, lb, epo)
 
-    print(f"Average Overlap: {avg_overlap:.4f}\n")
-    print(f"Best Parameters: learning_rate={best_params[0]}, gain={best_params[1]}, look_back={best_params[2]}")
-    print(f"Best Overlap: {best_overlap:.4f}")
+    # Free up memory
+    del spike_data, spike_data_flat, model, mem
+    gc.collect()  # Force garbage collection
 
 print("Results saved to hyperparameter_results.csv")
