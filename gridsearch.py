@@ -1,6 +1,5 @@
 import itertools
 import os
-import pandas as pd
 from model import FullyConnectedLeakyNetwork
 from helper import test_image, load_image
 from snntorch import spikegen
@@ -22,11 +21,18 @@ minus = -0.07  # Negative threshold for leaky neurons
 data, train_loader, data_img = load_image(w, h)
 
 # Define hyperparameters to search over
-learning_rates = [0.037]  
-gains = [0.315, 0.32, 0.325, 0.33, 0.335]  
-look_backs = [4, 5, 6]  
+"""learning_rates = [0.029, 0.03, 0.031]  
+gains = [0.31, 0.315, 0.32]  
+look_backs = [4]  
 epochs = [10]
-threshold = [0.45, 0.48, 0.5, 0.52]
+threshold = [0.465, 0.48, 0.495]"""
+
+#0.035,0.335,5,10,0.5
+learning_rates = [0.033, 0.034, 0.035, 0.036]  
+gains = [0.335, 0.34, 0.345]  
+look_backs = [5]  
+epochs = [10]
+threshold = [0.495, 0.5, 0.505, 0.51]
 
 # Create a grid of all possible combinations of hyperparameters
 hyperparameter_combinations = list(itertools.product(learning_rates, gains, look_backs, epochs, threshold))
@@ -69,7 +75,7 @@ for lr, g, lb, epo, th in hyperparameter_combinations:
 
     # Initialize average overlap calculation
     avg_overlap = 0
-    noise_levels = [0.1, 0.3] # Different noise levels for testing
+    noise_levels = [0.2, 0.4] # Different noise levels for testing
 
     # Evaluate the model using test images
     for index, img in enumerate(data_img):
