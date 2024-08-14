@@ -10,6 +10,10 @@ from skimage.transform import resize
 import matplotlib.pyplot as plt
 import numpy as np
 from snntorch import spikegen
+from torch.utils.data import DataLoader
+import numpy as np
+from skimage import data as skimage_data
+from skimage.color import rgb2gray
 
 
 def preprocessing(img, w=16, h=16):
@@ -99,3 +103,29 @@ def calculate_cosine_similarity(output_spike_frequency, original_image):
         overlap = dot_product / (norm_output * norm_original)
 
     return overlap.item()
+
+def load_image(w=16, h=16):
+    # Load data
+    camera = skimage_data.camera()
+    astronaut = rgb2gray(skimage_data.astronaut())
+    horse = skimage_data.horse()
+    coffee = rgb2gray(skimage_data.coffee())
+
+    mnist = tf.keras.datasets.mnist
+    (train_images, _), _ = mnist.load_data()
+
+    # Get a sample image
+    image1 = 255-train_images[0]
+    image2 = 255-train_images[1]
+    image3 = 255-train_images[2]
+    image4 = 255-train_images[3]
+
+    #data = [camera, astronaut, horse, coffee]
+    data_img = [image1, image2, image3]
+    data = [preprocessing(d, w,h) for d in data_img]
+
+    # Iterate through minibatches
+    train_loader = DataLoader(data, batch_size=1, shuffle=True)
+    data = iter(train_loader)
+
+    return data, train_loader, data_img

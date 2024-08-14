@@ -1,44 +1,16 @@
 # -*- coding: utf-8 -*-
 
-#TODO: method to load images
 # TODO: write comments + docstrings
 
 import snntorch as snn
-
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader
-
-
-import matplotlib.pyplot as plt
 import numpy as np
-import itertools
-
 import numpy as np
-from matplotlib import pyplot as plt
-import matplotlib.cm as cm
 from tqdm import tqdm
-import skimage.data
-from skimage.color import rgb2gray
-
-from skimage.transform import resize
-
-
-from skimage import data as skimage_data
-from torch.utils.data import DataLoader
-from snntorch import spikegen
-
-from snntorch import surrogate
-
-import tensorflow as tf
-
-
-
 import torch
 import torch.nn as nn
 import snntorch as snn
-
-from helper import preprocessing, add_noise
 
 class FullyConnectedLeakyNetwork(nn.Module):
     # was macht beta nochmal?
