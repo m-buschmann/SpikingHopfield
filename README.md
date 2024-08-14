@@ -38,9 +38,9 @@ If you just want to see how the network performs with the set images and hyperpa
 To visualize the spiking images:
 1. If necessary, set the path to your local ffmpeg installation in **plot_spiking_image.py**:
 ```bash
-plt.rcParams['animation.ffmpeg_path'] = 
+plt.rcParams['animation.ffmpeg_path'] = 'path/to/your/ffmpeg'
 ```
-2. Run **plot_spiking_image.py**
+2. Run **plot_spiking_image.py**.
 
 ## Example
 To run the model, use the following command in the terminal:
