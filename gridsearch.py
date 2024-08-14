@@ -7,32 +7,31 @@ from snntorch import spikegen
 from skimage.transform import resize
 import gc
 
-num_steps = 100
-batch_size = 1
-w = 16
-h = w
-n_neurons = w * h
-iterations = 100
-last_steps = num_steps - int(num_steps * 0.1)
-plus = 0.1
-minus = -0.07
+# Define constants for the simulation
+num_steps = 100  # Total time steps for the simulation
+batch_size = 1  # Size of data batches for training
+w = 16  # Width of the image
+h = w  # Height of the image (square)
+n_neurons = w * h  # Total number of neurons (pixels in the image)
+iterations = 100  # Total number of training iterations
+last_steps = num_steps - int(num_steps * 0.1)  # Steps to consider for evaluation
+plus = 0.1  # Positive threshold for leaky neurons
+minus = -0.07  # Negative threshold for leaky neurons
 
 # Load the data
 data, train_loader, data_img = load_image(w, h)
 
 # Define hyperparameters to search over
-learning_rates = [0.035, 0.037]  # Example values for learning rates
-gains = [0.315, 0.32, 0.325, 0.33, 0.335]  # Example values for gains
-look_backs = [4, 5, 6]  # Example values for look back
+learning_rates = [0.037]  
+gains = [0.315, 0.32, 0.325, 0.33, 0.335]  
+look_backs = [4, 5, 6]  
 epochs = [10]
 threshold = [0.45, 0.48, 0.5, 0.52]
 
-# Create a grid of all possible combinations
+# Create a grid of all possible combinations of hyperparameters
 hyperparameter_combinations = list(itertools.product(learning_rates, gains, look_backs, epochs, threshold))
 
-best_params = None
-best_overlap = -float('inf')
-# Define CSV filename
+# Define CSV filename to save results
 csv_filename = 'hyperparameter_results.csv'
 
 # Write header for CSV file if it doesn't already exist
@@ -41,10 +40,10 @@ if not os.path.isfile(csv_filename):
     with open(csv_filename, 'w') as f:
         f.write(','.join(results_header) + '\n')
 
+# Loop through each combination of hyperparameters
 for lr, g, lb, epo, th in hyperparameter_combinations:
-
     hyperparameter_title = f'lr_{lr}_gain_{g}_lookback_{lb}_epoch_{epo}_threshold_{th}'
-    output_dir = f'output_images/{hyperparameter_title}'
+    output_dir = f'output_images/{hyperparameter_title}' # Directory for output images
     os.makedirs(output_dir, exist_ok=True)
 
     print(f"Testing combination: learning_rate={lr}, gain={g}, look_back={lb}, epochs={epo}, threshold={th}")
@@ -52,33 +51,37 @@ for lr, g, lb, epo, th in hyperparameter_combinations:
     # Prepare to collect spike data for each iteration
     spike_data = []
 
-    # Loop over train_loader to collect spike data
+    # Loop over the training data to collect spike data
     for data_it in train_loader:
         spike_data.append(spikegen.rate(data_it, num_steps=num_steps, gain=g))
 
+    # Flatten the spike data for processing
     spike_data_flat = [spike.view(num_steps, -1) for spike in spike_data]
 
-    # Initialize the model with current hyperparameters
+    # Initialize the model with current set of hyperparameters
     model = FullyConnectedLeakyNetwork(n_neurons, lr, lb, epo, iterations, plus, minus, threshold=th)
 
-    # Initialize membrane potentials
+    # Initialize membrane potentials for the model
     mem = model.leaky.init_leaky()
 
-    # Train weights using the provided training method
+    # Train the model weights using the training method
     model.train_weights(spike_data_flat, mem, num_steps, lr, lb, epo)
 
-    # Evaluate the model on your test images
+    # Initialize average overlap calculation
     avg_overlap = 0
-    noise_levels = [0.1, 0.3]
+    noise_levels = [0.1, 0.3] # Different noise levels for testing
 
+    # Evaluate the model using test images
     for index, img in enumerate(data_img):
-        img = resize(img, (w, h), mode='reflect')
+        img = resize(img, (w, h), mode='reflect') # Resize image to match model input
         for noise_level in noise_levels:
+            # Test the image and get the overlap value
             _, _, _, _, image_overlap = test_image(model, img, index, num_steps, output_dir, noise_level, w, g, iterations)
 
             # Sum the overlap for all images and noise levels
             avg_overlap += image_overlap
 
+    # Calculate the average overlap across all test images and noise levels
     avg_overlap /= len(data_img) * len(noise_levels)
 
     # Prepare the result for CSV writing
@@ -91,17 +94,12 @@ for lr, g, lb, epo, th in hyperparameter_combinations:
         "Average Overlap": avg_overlap
     }
 
-    # Append the result to the CSV file directly
+    # Append the result to the CSV file
     with open(csv_filename, 'a') as f:
         f.write(','.join([str(value) for value in result.values()]) + '\n')
 
-    # Update best parameters if this combination is better
-    if avg_overlap > best_overlap:
-        best_overlap = avg_overlap
-        best_params = (lr, g, lb, epo)
-
     # Free up memory
     del spike_data, spike_data_flat, model, mem
-    gc.collect()  # Force garbage collection
+    gc.collect() 
 
 print("Results saved to hyperparameter_results.csv")

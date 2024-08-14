@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # TODO: write comments + docstrings
+# TODO: add nice movie plot of noisy images
 
 import snntorch as snn
 import torch
