@@ -55,3 +55,8 @@ The Hopfield Network concepts are adapted from @takyamamoto (https://github.com/
 The spiking image generation is adapted from Jason K. Eshraghian (https://colab.research.google.com/github/jeshraghian/snntorch/blob/master/examples/tutorial_1_spikegen.ipynb)
 
 The project was planned and executed by Malin Braatz, Mathilda Buschmann and Marieke Schmiesing.
+
+## License
+Licensed under the GNU GPL License, Version 3.0 (the "LICENSE"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+GPLv3: https://www.gnu.org/licenses/gpl-3.0.en.html
