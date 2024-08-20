@@ -21,18 +21,18 @@ minus = -0.07  # Negative threshold for leaky neurons
 data, train_loader, data_img = load_image(w, h)
 
 # Define hyperparameters to search over
-"""learning_rates = [0.029, 0.03, 0.031]  
+learning_rates = [0.029, 0.03, 0.031]  
 gains = [0.31, 0.315, 0.32]  
 look_backs = [4]  
 epochs = [10]
-threshold = [0.465, 0.48, 0.495]"""
+threshold = [0.465, 0.48, 0.495]
 
 #0.035,0.335,5,10,0.5
-learning_rates = [0.033, 0.034, 0.035, 0.036]  
+"""learning_rates = [0.033, 0.034, 0.035, 0.036]  
 gains = [0.335, 0.34, 0.345]  
 look_backs = [5]  
 epochs = [10]
-threshold = [0.495, 0.5, 0.505, 0.51]
+threshold = [0.495, 0.5, 0.505, 0.51]"""
 
 # Create a grid of all possible combinations of hyperparameters
 hyperparameter_combinations = list(itertools.product(learning_rates, gains, look_backs, epochs, threshold))

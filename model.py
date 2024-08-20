@@ -1,16 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# TODO: run gridsearch again
-
 import snntorch as snn
 import torch
 import torch.nn as nn
-import numpy as np
 import numpy as np
 from tqdm import tqdm
-import torch
-import torch.nn as nn
-import snntorch as snn
 
 class FullyConnectedLeakyNetwork(nn.Module):
     """
@@ -168,7 +162,6 @@ class FullyConnectedLeakyNetwork(nn.Module):
 
                 for t in range(n_steps):
                     spikes_t = spikes_img[t].view(-1).float()  # Get spikes at time t for each neuron
-
 
                     # Update membrane potential and spikes
                     spk, mem = self.leaky(spikes_t, mem)

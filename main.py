@@ -14,12 +14,12 @@ n_neurons = w * h  # Total number of neurons (corresponds to pixels in the image
 iterations = 100  # Total number of training iterations
 epochs = 10  # Number of epochs for training
 last_steps = num_steps - int(num_steps * 0.1)  # Steps used for final evaluation
-gain = 0.325  # Gain factor for spike generation
+gain = 0.345  # Gain factor for spike generation
 learning_rate = 0.035  # Learning rate for training
 look_back = 5  # Look back period for input data
 plus = 0.1  # Positive threshold for leaky neurons
 minus = -0.07  # Negative threshold for leaky neurons
-threshold = 0.5  # Threshold for firing neurons
+threshold = 0.505  # Threshold for firing neurons
 
 # Load the training data
 data, train_loader, data_img = load_image(w,h)
@@ -45,7 +45,7 @@ spike_data_flat = [spike.view(num_steps, -1) for spike in spike_data]
 model.train_weights(spike_data_flat, mem, num_steps, learning_rate, look_back, epochs)
 
 # Define noise levels to test
-noise_levels = [0.0, 0.2, 0.5]
+noise_levels = [0.0, 0.2, 0.3, 0.5]
 # Create a title for the output directory based on hyperparameters
 hyperparameter_title = f'lr_{learning_rate}_epoch_{epochs}_lookback_{look_back}_gain_{gain}'
 
