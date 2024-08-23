@@ -1,4 +1,4 @@
-# Spiking Hopfield Network for Image Processing
+# Extending the Hopfield Network: Hebbian Learning in Spiking Neural Networks
 
 ## Overview
 This project implements a Spiking Hopfield Network to process and analyze images. The model utilizes rate encoded spike data generated from images, applies noise, and evaluates performance based on the cosine similarity of spike frequency and the original image. The Hopfield network serves as a form of associative memory that can recall patterns based on the input it receives.
