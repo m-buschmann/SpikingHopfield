@@ -45,7 +45,7 @@ spike_data_flat = [spike.view(num_steps, -1) for spike in spike_data]
 model.train_weights(spike_data_flat, mem, num_steps, learning_rate, look_back, epochs)
 
 # Define noise levels to test
-noise_levels = [0.0, 0.2, 0.3, 0.5]
+noise_levels = [0.0, 0.2, 0.3, 0.5, 0.75,1]
 # Create a title for the output directory based on hyperparameters
 hyperparameter_title = f'lr_{learning_rate}_epoch_{epochs}_lookback_{look_back}_gain_{gain}'
 
