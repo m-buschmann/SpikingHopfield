@@ -95,7 +95,7 @@ def test_image(model, image, image_index, num_steps, output_dir, noise_level=0.2
     plt.subplot(1, 3, 1)
     plt.imshow(spike_test_data_noisy.sum(dim=0).view(w, h).detach().cpu().numpy(), cmap='gray')
     plt.title("Noisy Spike Data")
-
+  
     # Flatten spike data for network forward pass
     spike_test_data_flat = spike_test_data_noisy.view(num_steps, -1)
 

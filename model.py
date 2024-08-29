@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 from tqdm import tqdm
-
+ 
 class FullyConnectedLeakyNetwork(nn.Module):
     """
     A fully connected leaky spiking neural network using Hebbian learning rules.

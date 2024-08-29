@@ -37,7 +37,7 @@ csv_filename = 'hyperparameter_results.csv'
 if not os.path.isfile(csv_filename):
     results_header = ["Learning Rate", "Gain", "Look Back", "Epochs", "Threshold", "Average Overlap"]
     with open(csv_filename, 'w') as f:
-        f.write(','.join(results_header) + '\n')
+        f.write(','.join(results_header) + '\n') 
 
 # Loop through each combination of hyperparameters
 for lr, g, lb, epo, th in hyperparameter_combinations:

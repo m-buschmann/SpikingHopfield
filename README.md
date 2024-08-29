@@ -60,3 +60,4 @@ The project was planned and executed by Malin Braatz, Mathilda Buschmann and Mar
 Licensed under the GNU GPL License, Version 3.0 (the "LICENSE"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
 GPLv3: https://www.gnu.org/licenses/gpl-3.0.en.html
+ 

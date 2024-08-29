@@ -4,7 +4,7 @@ from snntorch import spikegen
 from skimage.transform import resize
 import os
 
-
+  
 # Define hyperparameters for the simulation
 num_steps = 100  # Total time steps for spike generation
 batch_size = 1  # Size of data batches for training

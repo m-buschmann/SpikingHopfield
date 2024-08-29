@@ -15,7 +15,7 @@ gain = 0.325  # Gain factor for spike generation
 data, train_loader, data_img = load_image(w,h)
 
 # Collect spiking data from training images
-spike_data = []
+spike_data = [] 
 for i in range (len(train_loader)):
   # Get the next batch of data
   data_it,  = next(data)
