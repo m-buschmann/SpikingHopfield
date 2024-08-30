@@ -29,7 +29,7 @@ spike_data = []
 for i in range (len(train_loader)):
   # Get the next batch of data
   data_it,  = next(data)
-  # Generate spike data using the spiking rate function
+  # Generate rate encoded spike data
   spike_data.append(spikegen.rate(data_it, num_steps=num_steps, gain=gain))
 
 # Create the model instance with the specified hyperparameters
@@ -42,10 +42,12 @@ mem = model.leaky.init_leaky()
 spike_data_flat = [spike.view(num_steps, -1) for spike in spike_data]
 
 # Train weights using the provided training method
+# the model gets rate encoded images to train on, and will be tested on the same images with different noise levels added
+# the goal is to see how well the model can reconstruct the original image from the noisy input
 model.train_weights(spike_data_flat, mem, num_steps, learning_rate, look_back, epochs)
 
 # Define noise levels to test
-noise_levels = [0.0, 0.2, 0.3, 0.5, 0.75,1]
+noise_levels = [0.0, 0.2, 0.3, 0.5, 0.75]
 # Create a title for the output directory based on hyperparameters
 hyperparameter_title = f'lr_{learning_rate}_epoch_{epochs}_lookback_{look_back}_gain_{gain}'
 

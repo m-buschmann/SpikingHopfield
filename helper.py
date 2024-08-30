@@ -13,6 +13,7 @@ from skimage.color import rgb2gray
 import os
 import snntorch.spikeplot as splt
 from IPython.display import HTML
+import csv
 
 
 
@@ -54,8 +55,27 @@ def add_noise(img, noise_level=0.2):
     noisy_img = random_noise(img, mode='s&p', amount=noise_level) # Add salt and pepper noise
     return noisy_img
 
+# Define a function to save overlap data to CSV
+def save_overlap_to_csv(file_path, data):
+    """
+    Save overlap data to a CSV file.
 
-def test_image(model, image, image_index, num_steps, output_dir, noise_level=0.2, w=16, gain=0.2, iterations=100):
+    Args:
+        file_path (str): The path to the CSV file.
+        data (list of tuples): Each tuple contains (image_index, noise_level, overlap).
+    """
+    # Check if the file exists
+    file_exists = os.path.isfile(file_path)
+    
+    # Write data to the CSV file
+    with open(file_path, mode='a', newline='') as file:
+        writer = csv.writer(file)
+        if not file_exists:
+            # Write header if the file doesn't exist
+            writer.writerow(["Image Index", "Noise Level", "Overlap"])
+        writer.writerows(data)
+
+def test_image(model, image, image_index, num_steps, output_dir, noise_level=0.2, w=16, gain=0.2, iterations=100, csv_file='overlap_results.csv'):
     """
     Test the model with a given image, adding noise and generating spikes. 
     The results are plotted and saved.
@@ -119,6 +139,9 @@ def test_image(model, image, image_index, num_steps, output_dir, noise_level=0.2
     plot_filename = os.path.join(output_dir, f'output_image_{image_index}_noise_{noise_level}.png')
     plt.savefig(plot_filename)
     plt.close() 
+
+    # Save overlap data to CSV
+    save_overlap_to_csv(csv_file, [(image_index, noise_level, image_overlap)])
 
     return spike_test_data, spike_test_data_noisy, output_spikes, spike_frequency, image_overlap
 

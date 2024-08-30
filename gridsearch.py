@@ -39,7 +39,7 @@ if not os.path.isfile(csv_filename):
     with open(csv_filename, 'w') as f:
         f.write(','.join(results_header) + '\n') 
 
-# Loop through each combination of hyperparameters
+# Loop through each combination of hyperparameters to find the best set
 for lr, g, lb, epo, th in hyperparameter_combinations:
     hyperparameter_title = f'lr_{lr}_gain_{g}_lookback_{lb}_epoch_{epo}_threshold_{th}'
     output_dir = f'output_images/{hyperparameter_title}' # Directory for output images
