@@ -1,7 +1,7 @@
 import itertools
 import os
 from model import FullyConnectedLeakyNetwork
-from helper import test_image, load_image
+from functions import test_image, load_image
 from snntorch import spikegen
 from skimage.transform import resize
 import gc

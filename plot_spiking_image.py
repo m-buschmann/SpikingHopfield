@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
-from helper import load_image, plot_spiking_image
+from functions import load_image, plot_spiking_image
 from snntorch import spikegen
+
+# Display the spiking image
 
 # plt.rcParams['animation.ffmpeg_path'] = '/home/mathilda/anaconda3/envs/mne/bin/ffmpeg'
 
