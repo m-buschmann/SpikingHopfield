@@ -4,6 +4,7 @@ from snntorch import spikegen
 
 # Display the spiking image
 
+# optional:
 # plt.rcParams['animation.ffmpeg_path'] = '/home/mathilda/anaconda3/envs/mne/bin/ffmpeg'
 
 # Define hyperparameters for the simulation
