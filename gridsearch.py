@@ -1,10 +1,12 @@
 import itertools
 import os
-from model import FullyConnectedLeakyNetwork
+from model import SpikingHopfield
 from functions import test_image, load_image
 from snntorch import spikegen
 from skimage.transform import resize
 import gc
+
+# Do a grid search over hyperparameters to find the best set
 
 # Define constants for the simulation
 num_steps = 100  # Total time steps for the simulation
@@ -58,7 +60,7 @@ for lr, g, lb, epo, th in hyperparameter_combinations:
     spike_data_flat = [spike.view(num_steps, -1) for spike in spike_data]
 
     # Initialize the model with current set of hyperparameters
-    model = FullyConnectedLeakyNetwork(n_neurons, lr, lb, epo, iterations, plus, minus, threshold=th)
+    model = SpikingHopfield(n_neurons, lr, lb, epo, iterations, plus, minus, threshold=th)
 
     # Initialize membrane potentials for the model
     mem = model.leaky.init_leaky()

@@ -1,9 +1,10 @@
-from model import FullyConnectedLeakyNetwork
+from model import SpikingHopfield
 from functions import test_image, load_image
 from snntorch import spikegen
 from skimage.transform import resize
 import os
 
+# Run the model with the specified hyperparameters
   
 # Define hyperparameters for the simulation
 num_steps = 100  # Total time steps for spike generation
@@ -33,7 +34,7 @@ for i in range (len(train_loader)):
   spike_data.append(spikegen.rate(data_it, num_steps=num_steps, gain=gain))
 
 # Create the model instance with the specified hyperparameters
-model = FullyConnectedLeakyNetwork(n_neurons, learning_rate, look_back, epochs, iterations, plus, minus, threshold = threshold)
+model = SpikingHopfield(n_neurons, learning_rate, look_back, epochs, iterations, plus, minus, threshold = threshold)
 
 # Initialize membrane potentials for the model
 mem = model.leaky.init_leaky()

@@ -20,7 +20,7 @@ pip install -r requirements.txt
 ```
 
 ## File Descriptions
-- **model.py**: Contains the definition of the FullyConnectedLeakyNetwork class, which implements the Spiking Hopfield Network architecture.
+- **model.py**: Contains the definition of the SpikingHopfield class, which implements the Spiking Hopfield Network architecture.
 - **helper.py**: Includes helper functions for loading images, preprocessing data, adding noise, and testing images through the SNN.
 - **main.py**: The main script where the Spiking Hopfield Network is trained and evaluated using sample images.
 - **output_images/**: Directory where output images from the testing phase will be saved.

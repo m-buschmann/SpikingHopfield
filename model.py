@@ -6,7 +6,7 @@ import torch.nn as nn
 import numpy as np
 from tqdm import tqdm
  
-class FullyConnectedLeakyNetwork(nn.Module):
+class SpikingHopfield(nn.Module):
     """
     A fully connected leaky spiking neural network using Hebbian learning rules.
 
@@ -26,7 +26,7 @@ class FullyConnectedLeakyNetwork(nn.Module):
 
     def __init__(self, n_neurons, learning_rate, look_back, epochs, iterations, plus, minus, beta=0.9, threshold = 0.5):
         """
-        Initializes the FullyConnectedLeakyNetwork with specified parameters.
+        Initializes the SpikingHopfield with specified parameters.
 
         Parameters:
             n_neurons (int): Number of neurons in the network.
@@ -39,7 +39,7 @@ class FullyConnectedLeakyNetwork(nn.Module):
             beta (float, optional): Leak rate for leaky neurons. Default is 0.9.
             threshold (float, optional): Spiking threshold for leaky neurons. Default is 0.5.
         """
-        super(FullyConnectedLeakyNetwork, self).__init__()
+        super(SpikingHopfield, self).__init__()
         self.n_neurons = n_neurons
         self.learning_rate = learning_rate
         self.look_back = look_back
