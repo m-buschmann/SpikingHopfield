@@ -15,7 +15,7 @@ This project implements a Spiking Hopfield Network to process and analyze images
 ## How to run the code
 1. Clone the repository from GitHub:
 ```bash
-git clone <repository_url>
+git clone [<repository_url>](https://github.com/m-buschmann/SpikingHopfield.git)
 ```
 2. Navigate to the cloned repository directory:
 ```bash
