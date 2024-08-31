@@ -12,11 +12,30 @@ This project implements a Spiking Hopfield Network to process and analyze images
 - **Performance Evaluation**: Assesses the model's output against the original image using cosine similarity.
 - **Visualization**: Plots spike data and output spike frequency for analysis.
 
-## Requirements
-This project depends on several Python libraries. To install the required dependencies, you can use the following command:
-
+## How to run the code
+1. Clone the repository from GitHub:
+```bash
+git clone <repository_url>
+```
+2. Navigate to the cloned repository directory:
+```bash
+cd SpikingHopfield
+```
+3. Create a virtual environment (optional but recommended):
+```bash
+python3 -m venv venv
+```
+4. Activate the virtual environment:
+```bash
+source venv/bin/activate
+```
+5. Install the required dependencies:
 ```bash
 pip install -r requirements.txt
+```
+6. Run the main.py script:
+```bash
+python main.py
 ```
 
 ## File Descriptions
@@ -42,12 +61,6 @@ To visualize the spiking images:
 plt.rcParams['animation.ffmpeg_path'] = 'path/to/your/ffmpeg'
 ```
 2. Run **plot_spiking_image.py**.
-
-## Example
-To run the model, use the following command in the terminal:
-```bash
-python main.py
-```
 
 ## Acknowledgments
 
