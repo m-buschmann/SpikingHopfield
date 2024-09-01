@@ -45,6 +45,8 @@ python main.py
 - **output_images/**: Directory where output images from the testing phase will be saved.
 - **gridsearch.py**: Perform grid search for the best hyperparameter.
 - **plot_spiking_image.py**: Plot and save the generated rate encoded spiking image as mp4.
+- **overlap_results.csv**:  Contains data on the overlap values for different images at various noise levels.
+- **animation.mp4**: Contains the animation of one rate encoded spiking image
 
 ## Usage
 
